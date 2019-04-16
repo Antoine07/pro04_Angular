@@ -15,7 +15,7 @@ export class AlbumDetailsComponent implements OnInit {
   // lifeCycle 
 
   constructor() {
-    console.log('constructor AlbumDetailsComponent');
+    console.log('constructor AlbumDetailsComponent 1');
    }
 
   ngOnInit() {
