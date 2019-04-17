@@ -31,14 +31,26 @@ export class AlbumService {
   switchOn(album: Album): void {
 
     this.getAlbums().map(al => {
-      if ( album.id === al.id ) al.status = 'on';
+      if (album.id === al.id) al.status = 'on';
       else al.status = 'off';
     });
   }
 
-  paginate( start : number, end : number):Album[]{
+  paginate(start: number, end: number): Album[] {
+    return this.getAlbums().slice(start, end);
+  }
 
-    return this.getAlbums().slice(start, end) ;
+  search(word: string): Album[] {
+    let albums = [];
+
+    if (word.length > 3) {
+
+      this.getAlbums().forEach( album => {
+        if( album.title.includes(word) ) albums.push(album);
+      });
+    }
+
+    return albums;
   }
 
 }
