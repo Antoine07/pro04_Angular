@@ -12,6 +12,7 @@ export class AlbumsComponent implements OnInit {
   albums : Album[] = ALBUMS;
 
   selectedAlbum : Album;
+  title : string = "Details des chansons d'un album...";
 
   constructor() { 
     console.log('constructor AlbumsComponent');
