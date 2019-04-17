@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 
 // typeScript structure de type
-import { Album, List } from '../albums';
-
-import { ALBUM_LISTS } from '../mock-albums';
+import { Album } from '../albums';
+import { AlbumService } from '../album.service';
 
 @Component({
   selector: 'app-album-details',
@@ -20,7 +19,7 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
   songs : string[]; // array de string
 
   // lifeCycle 
-  constructor() {
+  constructor(private aS : AlbumService) {
     console.log('constructor AlbumDetailsComponent 1');
    }
 
@@ -34,10 +33,9 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
 
     // on vérifie que c'est != null
     if( this.album ){
+      const albumList = this.aS.getAlbumList(this.album.id); 
 
-      const albumList = ALBUM_LISTS.find( l => l.id === this.album.id );
-
-      if(albumList) this.songs = albumList.list;
+      if( albumList ) this.songs = albumList.list;
     }
   }
 

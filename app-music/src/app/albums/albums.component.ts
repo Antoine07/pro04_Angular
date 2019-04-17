@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../albums';
-import { ALBUMS } from '../mock-albums';
 import { AlbumService } from '../album.service';
 
 @Component({
@@ -10,20 +9,23 @@ import { AlbumService } from '../album.service';
 })
 export class AlbumsComponent implements OnInit {
 
-  albums: Album[] = ALBUMS;
+  albums: Album[] = [];
+  count : number;
 
   selectedAlbum: Album;
   title: string = "Details des chansons d'un album...";
 
+  // service on doit DI ~ préparation des services par Angular éventuellement dépend d'autre(s) service(s)
   constructor(private aS : AlbumService) {
-
     console.log('constructor AlbumsComponent');
+
+    console.log(this.aS.paginate(0, 2));
   }
 
   ngOnInit() {
-    console.log('ngOnInit AlbumsComponent')
-
-    console.log( this.aS.getAlbums() );
+    // vous pouvez passer en paramètre une fonction flèchée pour sort définie dans le service
+    this.albums = this.aS.getAlbums((a, b) => a.duration - b.duration);
+    this.count = this.aS.count();
   }
 
   ngOnChanges() {
@@ -34,12 +36,9 @@ export class AlbumsComponent implements OnInit {
     this.selectedAlbum = album;
   }
 
+  // TODO 
   playParent($event: Album) {
-
-    this.albums.map( album => {
-      if ($event.id == album.id)
-        album.status = 'on'
-      else album.status = 'off'
-    });
+    this.aS.switchOn($event);
   }
+  
 }
