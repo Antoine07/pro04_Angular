@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 
 // typeScript structure de type
 import { Album, List } from '../albums';
@@ -10,10 +10,12 @@ import { ALBUM_LISTS } from '../mock-albums';
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.scss']
 })
-export class AlbumDetailsComponent implements OnInit {
+export class AlbumDetailsComponent implements OnInit, OnChanges {
 
   @Input() album : Album; // une fois que l'on a sélectionné un album
   @Input() title : string;
+
+  @Output() onPlay: EventEmitter<Album> = new EventEmitter();
 
   songs : string[]; // array de string
 
@@ -34,7 +36,12 @@ export class AlbumDetailsComponent implements OnInit {
     if( this.album ){
 
       const albumList = ALBUM_LISTS.find( l => l.id === this.album.id );
-      this.songs = albumList.list;
+
+      if(albumList) this.songs = albumList.list;
     }
+  }
+
+  play(album: Album) {
+    this.onPlay.emit(album); // émettre un album vers le parent
   }
 }

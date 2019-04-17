@@ -1,12 +1,16 @@
 <div class="row content">
   <div class="col-sm-4 video">
-    <app-album-details [album]="selectedAlbum" [title]="title" ></app-album-details>
+    <app-album-details
+     [album]="selectedAlbum" 
+     [title]="title"
+     (onPlay)="playParent($event)"
+     ></app-album-details>
   </div><!-- .video -->
   <div class="col-sm-8 music">
     <div class="card" *ngFor="let album of albums; let index = index;">
       <div class="card-header">
         <!-- permet d'afficher l'index -->
-        {{ index + 1 }} Pop
+        {{ index + 1 }} Pop <span *ngIf="album.status === 'on'">[play]</span>
       </div>
       <div class="card-body">
         <h5 class="card-title"><a class="text-info" routerLink="/album/{{album.id}}">{{album.title}}</a></h5>
