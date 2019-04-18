@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AlbumService } from '../album.service';
 import { Album } from '../albums';
@@ -11,6 +11,10 @@ import { Album } from '../albums';
 export class SearchComponent implements OnInit {
 
   @Output() searchAlbums: EventEmitter<Album[]> = new EventEmitter();
+  @Output() reload: EventEmitter<boolean> = new EventEmitter();
+
+  word: string = '';
+  isSumit: boolean = false;
 
   constructor(private aS: AlbumService) { }
 
@@ -18,15 +22,16 @@ export class SearchComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    //console.log(form.value);
     const albums = this.aS.search(form.value['word']);
-
-
     if (albums) {
-
       this.searchAlbums.emit(albums);
-
+      this.isSumit = true;
     }
+  }
+
+  onChangeEmit($event) {
+    if (this.word.length == 0 && this.isSumit)
+      this.reload.emit(true);
   }
 
 }

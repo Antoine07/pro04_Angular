@@ -10,13 +10,14 @@ import { AlbumService } from '../album.service';
 export class AlbumsComponent implements OnInit {
 
   albums: Album[] = [];
-  count : number;
+  count: number;
+  isSearch : boolean = false;
 
   selectedAlbum: Album;
   title: string = "Details des chansons d'un album...";
 
   // service on doit DI ~ préparation des services par Angular éventuellement dépend d'autre(s) service(s)
-  constructor(private aS : AlbumService) {
+  constructor(private aS: AlbumService) {
     console.log('constructor AlbumsComponent');
 
     console.log(this.aS.paginate(0, 2));
@@ -41,10 +42,18 @@ export class AlbumsComponent implements OnInit {
     this.aS.switchOn($event);
   }
 
-  searchParent($event : Album[]){
+  searchParent($event: Album[]) {
     this.albums = $event;
-
-    console.log($event);
+    this.isSearch = true;
   }
-  
+
+  reloadParent($event: boolean) {
+    console.log($event);
+    this.isSearch = false;
+
+    if ($event) {
+      this.albums = this.aS.getAlbums();
+    }
+  }
+
 }

@@ -40,13 +40,16 @@ export class AlbumService {
     return this.getAlbums().slice(start, end);
   }
 
-  search(word: string): Album[] {
+  search(word: string | null): Album[] {
+
+    if (word == null) return this.getAlbums();
+
     let albums = [];
 
     if (word.length > 3) {
 
-      this.getAlbums().forEach( album => {
-        if( album.title.includes(word) ) albums.push(album);
+      this.getAlbums().forEach(album => {
+        if (album.title.includes(word)) albums.push(album);
       });
     }
 
