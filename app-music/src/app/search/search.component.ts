@@ -29,8 +29,8 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  onChangeEmit($event) {
-    if (this.word.length == 0 && this.isSumit)
+  onChangeEmit($event :string) {
+    if ($event.length == 0 && this.isSumit)
       this.reload.emit(true);
   }
 
