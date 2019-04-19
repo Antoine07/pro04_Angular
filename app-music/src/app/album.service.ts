@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Album, List } from './albums'; // types
 import { ALBUMS, ALBUM_LISTS } from './mock-albums';
 
+import { Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,6 +11,9 @@ export class AlbumService {
 
   private _albums: Album[] = ALBUMS; // _ convention private et protected
   private _albumList: List[] = ALBUM_LISTS;
+
+  // Observer => next et Observable attendre que l'observe lui envoi quelque chose
+  sendCurrentNumberPage = new Subject<{current : number, paginate : number}>(); 
 
   constructor() { }
 

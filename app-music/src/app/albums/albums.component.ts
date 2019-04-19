@@ -62,7 +62,6 @@ export class AlbumsComponent implements OnInit {
   paginateParent($event: { start: number, end: number }) {
 
     const { start, end } = $event;
-
     this.albums = this.aS.paginate(start, end);
   }
 

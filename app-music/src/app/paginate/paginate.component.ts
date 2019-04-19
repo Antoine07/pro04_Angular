@@ -21,6 +21,15 @@ export class PaginateComponent implements OnInit {
 
   constructor(private aS: AlbumService) {
     this.total = this.aS.count();
+    // on s'abonne à l'observable 
+
+    this.aS.sendCurrentNumberPage.subscribe(
+      info => {
+        this.currentPage = info.current;
+
+        console.log(info);
+      }
+    );
   }
 
   ngOnInit() {
@@ -42,6 +51,8 @@ export class PaginateComponent implements OnInit {
     let end = start + this.perPage;
 
     this.paginate.emit({ start: start, end: end });
+
+    this.aS.sendCurrentNumberPage.next({ current : page, paginate : 1 })
   }
 
   next() {
