@@ -15,3 +15,8 @@ export class List {
     id : string;
     list: Array<string>;
 }
+
+export enum Position {
+    Down = "Down",
+    Top = "Top"
+  }

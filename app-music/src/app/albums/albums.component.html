@@ -8,7 +8,7 @@
      ></app-album-details>
   </div><!-- .video -->
   <div  class="col-sm-8 music">
-    <app-paginate (paginate)="paginateParent($event)" ></app-paginate>
+    <app-paginate (paginate)="paginateParent($event)" [position]="position.Top" ></app-paginate>
     <div class="card" *ngFor="let album of albums; let index = index;">
       <div  class="card-header">
         <!-- permet d'afficher l'index -->
@@ -39,6 +39,6 @@
       </div>
     </div>
     <!-- .card -->
-    <app-paginate (paginate)="paginateParent($event)" ></app-paginate>
+    <app-paginate (paginate)="paginateParent($event)" [position]="position.Down" ></app-paginate>
   </div><!-- .music -->
 </div>

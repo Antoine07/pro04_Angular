@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Album } from '../albums';
+import { Album, Position } from '../albums';
 import { AlbumService } from '../album.service';
 import { environment } from '../../environments/environment';
 
@@ -19,6 +19,8 @@ export class AlbumsComponent implements OnInit {
 
   selectedAlbum: Album;
   title: string = "Details des chansons d'un album...";
+
+  position = Position;
 
   // service on doit DI ~ préparation des services par Angular éventuellement dépend d'autre(s) service(s)
   constructor(private aS: AlbumService) {
