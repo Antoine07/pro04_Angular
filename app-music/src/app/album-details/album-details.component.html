@@ -1,4 +1,4 @@
-<div class="card-details" *ngIf="album">
+<div [@details]="isOpen? 'open' : 'opening'" class="card-details card-scroll" *ngIf="album">
     {{title || 'no title'}}
     <img *ngIf="album.url" class="card-img-top" src="{{album.url}}" alt="Group Music">
     <div class="card-body">

@@ -7,9 +7,10 @@
      (onPlay)="playParent($event)"
      ></app-album-details>
   </div><!-- .video -->
-  <div class="col-sm-8 music">
+  <div  class="col-sm-8 music">
+    <app-paginate (paginate)="paginateParent($event)" ></app-paginate>
     <div class="card" *ngFor="let album of albums; let index = index;">
-      <div class="card-header">
+      <div  class="card-header">
         <!-- permet d'afficher l'index -->
         {{ index + 1 }} Pop <span *ngIf="album.status === 'on'">[play]</span>
       </div>
@@ -34,9 +35,10 @@
           <small>{{album.duration}} min</small>
         </ng-template>
         
-        <button (click)="onSelect(album)" class="btn btn-dark">Details</button>
+        <button (click)="onSelect(album, $event)" class="btn btn-dark">Details</button>
       </div>
     </div>
     <!-- .card -->
+    <app-paginate (paginate)="paginateParent($event)" ></app-paginate>
   </div><!-- .music -->
 </div>
