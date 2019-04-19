@@ -17,10 +17,10 @@ export class AlbumsComponent implements OnInit {
   count: number;
   isSearch: boolean = false;
 
+  position = Position; // comme valeurs positions
+
   selectedAlbum: Album;
   title: string = "Details des chansons d'un album...";
-
-  position = Position;
 
   // service on doit DI ~ préparation des services par Angular éventuellement dépend d'autre(s) service(s)
   constructor(private aS: AlbumService) {

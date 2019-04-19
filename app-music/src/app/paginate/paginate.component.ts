@@ -3,7 +3,6 @@ import { AlbumService } from '../album.service';
 
 // permet de définir des variables d'environement
 import { environment } from '../../environments/environment';
-
 import { Position } from '../albums';
 
 @Component({
@@ -29,11 +28,8 @@ export class PaginateComponent implements OnInit {
     // envoyer par l'observer, on est en attente
     this.aS.sendCurrentNumberPage.subscribe(
       info => {
-        if(this.position != info.position)
-        {
-          this.currentPage = info.current;
-          console.log(info, this.position);
-        }
+      //  console.log(info, this.position);
+      if(this.position !== info.position) this.currentPage = info.current;
       }
     );
   }

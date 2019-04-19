@@ -16,7 +16,9 @@ export class List {
     list: Array<string>;
 }
 
+// Position.Down 0 et Position.Top 1 par défaut sur les enums (liste de constantes)
+//  Position.Down "Down",  Position.Top "Top"
 export enum Position {
     Down = "Down",
     Top = "Top"
-  }
+}
