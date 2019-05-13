@@ -14,6 +14,7 @@ export class AlbumService {
 
   // Observer => next publication d'information et Observable d'attendre des informations et d'exécuter du code
   sendCurrentNumberPage = new Subject<{current : number, position : Position}>(); 
+  subjectAlbum = new Subject<Album>();
 
   constructor() { }
 

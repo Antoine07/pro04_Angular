@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { AlbumDescriptionComponent } from './album-description/album-description.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PaginateComponent } from './paginate/paginate.component';
+import { AudioPlayerComponent } from './audio-player/audio-player.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PaginateComponent } from './paginate/paginate.component';
     LoginComponent,
     AlbumDescriptionComponent,
     PageNotFoundComponent,
-    PaginateComponent
+    PaginateComponent,
+    AudioPlayerComponent
   ],
   imports: [
     BrowserModule,
