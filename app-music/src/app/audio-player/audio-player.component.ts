@@ -3,7 +3,7 @@ import { AlbumService } from '../album.service';
 import { Album } from '../albums';
 
 // import { interval } from 'rxjs'; // Observable
-import { take, map, mergeMap } from 'rxjs/operators'; // opérateurs
+// import { take, map, mergeMap } from 'rxjs/operators'; // opérateurs
 
 @Component({
   selector: 'app-audio-player',
@@ -22,22 +22,15 @@ export class AudioPlayerComponent implements OnInit {
 
     // définir un streaming de chanson simulé
     // Obsevable(Observer)
-    this.aS.subjectAlbum.subscribe( album => {
+    this.aS.subjectAlbum.subscribe(album => {
 
       // chaque album dans les sources dur 2 minutes
-      const total = Math.floor(album.duration / 120);
-      let current = 1;
-      this.total = total;
-      console.log(total);
+      this.total = Math.floor(album.duration / 120);
 
       const interval = setInterval(() => {
-        if (current < total) {
-          current++;
-          this.current = current;
-          this.ratio = Math.floor(current * (100 / total));
-
-          console.log(this.ratio);
-
+        if (this.current < this.total) {
+          this.current++;
+          this.ratio = Math.floor(this.current * (100 / this.total));
         } else {
           clearInterval(interval);
           this.total = null;
