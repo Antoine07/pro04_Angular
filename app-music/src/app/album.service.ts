@@ -13,7 +13,8 @@ export class AlbumService {
   private _albumList: List[] = ALBUM_LISTS;
 
   // Observer => next publication d'information et Observable d'attendre des informations et d'exécuter du code
-  sendCurrentNumberPage = new Subject<{current : number, position : Position}>(); 
+  sendCurrentNumberPage = new Subject<{ current: number, position: Position }>();
+
   subjectAlbum = new Subject<Album>();
 
   constructor() { }
@@ -37,8 +38,14 @@ export class AlbumService {
   switchOn(album: Album): void {
 
     this.getAlbums().map(al => {
-      if (album.id === al.id) al.status = 'on';
+      if (album.id === al.id) { al.status = 'on'; this.subjectAlbum.next(album); }
       else al.status = 'off';
+    });
+  }
+
+  switchOff(album: Album): void {
+    this.getAlbums().map(al => {
+      al.status = 'off';
     });
   }
 

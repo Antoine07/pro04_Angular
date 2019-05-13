@@ -36,11 +36,11 @@ export class AlbumDetailsComponent implements OnInit, OnChanges {
 
   // lifeCycle 
   constructor(private aS: AlbumService) {
-    console.log('constructor AlbumDetailsComponent 1');
+    // console.log('constructor AlbumDetailsComponent 1');
   }
 
   ngOnInit() {
-    console.log('ngOnInit AlbumDetailsComponent')
+    // console.log('ngOnInit AlbumDetailsComponent');
   }
 
   // à chaque fois qu'il détecte une valeur qui a changé 
